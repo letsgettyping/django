@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/your-username/your-django-repo.git'
+                git 'https://github.com/letsgettyping/django.git'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('my-django-app')
+                    docker.build('django_demo')
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Run Django in Container') {
             steps {
                 script {
-                    docker.image('my-django-app').run('-p 8000:8000')
+                    docker.image('django_demo').run('-p 8000:8000')
                 }
             }
         }
