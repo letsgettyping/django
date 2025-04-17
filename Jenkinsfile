@@ -11,7 +11,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('django_demo')
+                    sh 'docker build -t django_demo .'
+
                 }
             }
         }
@@ -19,7 +20,7 @@ pipeline {
         stage('Run Django in Docker') {
             steps {
                 script {
-                    docker.image('django_demo').run('-p 8000:8000')
+                    sh 'docker run -d -p 8000:8000 django_demo'
                 }
             }
         }
